@@ -1,0 +1,183 @@
+#include <VirtualWire.h>
+//PIR
+int pirPin = 6;
+int statePir = 0;
+
+//VIBRATION SENSOR
+const int vibration = 13;
+
+//LED BUTTONS
+int led1 = 2;
+int led2 = 3;
+int led3 = 4;
+int led4 = 5;
+
+//LAMP BUTTONS
+int lamp1= 8;
+int lamp2= 9;
+
+
+//Temperature Sensor
+int   reading;
+int   LM35Feed = A0;
+float tCelsius;
+float millivolts;
+
+//MQ2 Smoke Sensor
+int mq2 = A1;
+int mq2val = 0;
+
+void setup()
+{
+  Serial.begin(9600);
+  vw_setup(2000);
+  vw_set_tx_pin(7);
+  
+  //PIR SENSOR
+  pinMode(pirPin,INPUT);
+ 
+  //LED & LAMP Buttons
+  pinMode(led1, INPUT);
+  pinMode(led2, INPUT);
+  pinMode(led3, INPUT);
+  pinMode(led4, INPUT);
+  pinMode(lamp1, INPUT);
+  pinMode(lamp2, INPUT); 
+}
+
+void loop()
+{
+  // LED 1 BUTTON
+  if (digitalRead(led1) == HIGH)      
+  {
+     const char *msg = "A";
+     vw_send((uint8_t *)msg, strlen(msg));
+  }
+  if (digitalRead(led1) == LOW)
+  {
+     const char *msg = "a";
+     vw_send((uint8_t *)msg, strlen(msg));
+  }
+
+  // LED 2 BUTTON
+  if (digitalRead(led2) == HIGH)      
+  {
+     const char *msg = "B";
+     vw_send((uint8_t *)msg, strlen(msg));
+  }
+  if (digitalRead(led2) == LOW)
+  {
+     const char *msg = "b";
+     vw_send((uint8_t *)msg, strlen(msg));
+  }
+
+  // LED 3 BUTTON
+  if (digitalRead(led3) == HIGH)      
+  {
+     const char *msg = "C";
+     vw_send((uint8_t *)msg, strlen(msg));
+  }
+  if (digitalRead(led3) == LOW)
+  {
+     const char *msg = "c";
+     vw_send((uint8_t *)msg, strlen(msg));
+  }
+
+  // LED 4 BUTTON
+  if (digitalRead(led4) == HIGH)      
+  {
+     const char *msg = "D";
+     vw_send((uint8_t *)msg, strlen(msg));
+  }
+  if (digitalRead(led4) == LOW)
+  {
+     const char *msg = "d";
+     vw_send((uint8_t *)msg, strlen(msg));
+  }
+
+  // LAMP 1 BUTTON
+  if (digitalRead(lamp1) == LOW)      
+  {
+     const char *msg = "E";
+     vw_send((uint8_t *)msg, strlen(msg));
+  }
+  if (digitalRead(lamp1) == HIGH)
+  {
+     const char *msg = "e";
+     vw_send((uint8_t *)msg, strlen(msg));
+  }
+
+
+  // LAMP 2 BUTTON
+  if (digitalRead(lamp2) == LOW)      
+  {
+     const char *msg = "F";
+     vw_send((uint8_t *)msg, strlen(msg));
+  }
+  if (digitalRead(lamp2) == HIGH)
+  {
+     const char *msg = "f";
+     vw_send((uint8_t *)msg, strlen(msg));
+  }
+
+  
+  //PIR Sensor
+  statePir = digitalRead(pirPin);     
+  if (statePir == HIGH)  
+  {
+    const char *msg = "G";
+    vw_send((uint8_t *)msg, strlen(msg));
+  }
+  if (statePir == LOW)
+  {
+    const char *msg = "g";
+    vw_send((uint8_t *)msg, strlen(msg));
+  }
+
+  
+  //Temperature Sensor
+  reading = analogRead(LM35Feed);
+  millivolts= (reading/1024.0) * 5000;  
+  tCelsius = millivolts/10; //LM 35 Equation
+  Serial.print("Celsius *C :");
+  Serial.print(tCelsius);
+  Serial.println("");
+  delay(2000);
+  if(tCelsius > 40)
+  {
+    const char *msg = "H";
+    vw_send((uint8_t *)msg, strlen(msg));
+  }
+  if(tCelsius < 40)
+  {
+    const char *msg = "h";
+    vw_send((uint8_t *)msg, strlen(msg));
+  }
+  
+  
+  // MQ2 Smoke Sensor
+  mq2val = analogRead(mq2);     
+  if (mq2val > 120)  
+  {
+    const char *msg = "I";
+    vw_send((uint8_t *)msg, strlen(msg));
+  }
+  if (mq2val < 150)
+  {
+    const char *msg = "i";
+    vw_send((uint8_t *)msg, strlen(msg));
+  }
+  
+  //Vibration SENSOR
+  int vibrationval = digitalRead(vibration);
+  if ( HIGH == vibrationval)      
+  {
+     const char *msg = "J";
+     vw_send((uint8_t *)msg, strlen(msg));
+  }
+  else 
+  {
+   const char *msg = "j";
+   vw_send((uint8_t *)msg, strlen(msg));
+  }
+}
