@@ -1,25 +1,21 @@
-Queven Recorte Contact Form Setup
+QUEVEN RECORTE CONTACT FORM - FORMSUBMIT SETUP
 
-Files included:
-1. js/contact_me.js
-   - Replace the existing repo file: js/contact_me.js
+Updated file:
+- js/contact_me.js
 
-2. google-apps-script/Code.gs
-   - Copy this code into Google Apps Script.
-   - Already configured to send to: quevenrecorte@gmail.com
-   - Deploy as Web App.
-   - Execute as: Me
-   - Who has access: Anyone
-   - Copy the Web App URL.
+What changed:
+- Removed the Google Apps Script placeholder setup.
+- Removed the old PHP submit target.
+- Contact form now sends to FormSubmit:
+  https://formsubmit.co/ajax/quevenrecorte@gmail.com
 
-3. mail/contact_me.php
-   - Optional replacement only. GitHub Pages cannot run PHP.
+How to apply:
+1. Replace your website's existing js/contact_me.js with the one in this package.
+2. Upload/commit the file to your GitHub Pages repo.
+3. Open the live website and submit one test message.
+4. FormSubmit may send a confirmation email to quevenrecorte@gmail.com the first time.
+5. Confirm it, then submit another test message.
 
-Final website step:
-Open js/contact_me.js and replace:
-PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE
-
-with your deployed Google Apps Script Web App URL.
-
-Then upload/commit the files to:
-https://github.com/quevenrecorte/quevenrecorte.github.io
+Note:
+- mail/contact_me.php is not required for GitHub Pages.
+- It is included only as a harmless placeholder note.
