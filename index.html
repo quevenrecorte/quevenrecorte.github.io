@@ -226,9 +226,8 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <form name="sentMessage" id="contactForm" novalidate>
+                    <!-- Contact form submits through FormSubmit. First submission may require email confirmation. -->
+                    <form name="sentMessage" id="contactForm" action="https://formsubmit.co/quevenrecorte@gmail.com" method="POST" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Name</label>
@@ -261,7 +260,7 @@
                         <div id="success"></div>
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-lg">Send</button>
+                                <button type="submit" class="btn btn-success btn-lg" id="btnSubmit">Send</button>
                             </div>
                         </div>
                     </form>
@@ -681,7 +680,7 @@ of full duplex RS422 and power over CAT5 cable.</p>
 
     <!-- Contact Form JavaScript -->
     <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+    <script src="js/contact_me.js?v=202606060145"></script>
 
     <!-- Theme JavaScript -->
     <script src="js/freelancer.min.js"></script>
