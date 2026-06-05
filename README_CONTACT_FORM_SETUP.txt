@@ -1,16 +1,20 @@
 Queven Recorte Contact Form Setup
 
-This website uses FormSubmit, not Google Apps Script.
-
-Files updated:
-- index.html
-- js/contact_me.js
-- mail/contact_me.php placeholder only
-
-Email receiver:
+The contact form now uses FormSubmit and sends messages to:
 quevenrecorte@gmail.com
 
-Important:
-The first successful FormSubmit test may send a confirmation email to quevenrecorte@gmail.com. Open that email and click Activate/Confirm. After confirmation, website inquiries will be delivered normally.
+Included improvements:
+1. Loading spinner while sending.
+2. Send button disables while submitting to prevent duplicate messages.
+3. Form auto-clears after successful submission.
+4. Redirects to thank-you.html after successful submission.
+5. Honeypot spam protection using the hidden _honey field.
 
-Upload all files to the GitHub repo, especially index.html and js/contact_me.js.
+Files updated/added:
+- index.html
+- js/contact_me.js
+- thank-you.html
+
+Important:
+Upload all files to GitHub, especially index.html, js/contact_me.js, and thank-you.html.
+If your browser still shows old behavior, hard refresh with Ctrl + F5.
